@@ -127,7 +127,7 @@ public class Article {
             stmnt.setString(1, a.getName());
             stmnt.setFloat(2, a.getPrice());
             stmnt.setString(3, a.getDescription());
-            stmnt.setBlob(4, fis);
+            stmnt.setBinaryStream(4, fis);
             stmnt.setInt(5, a.getID());
             stmnt.executeUpdate();
             return true;
@@ -147,7 +147,7 @@ public class Article {
             while(rs.next()){
                 Image fxSlika = null;
                 try {
-                    BufferedImage bImage = ImageIO.read(rs.getBinaryStream(6));
+                    BufferedImage bImage = ImageIO.read(rs.getBinaryStream(5));
                     fxSlika = SwingFXUtils.toFXImage(bImage, null);
                 } catch (NullPointerException | IOException ex) {
                     fxSlika = null;
@@ -156,15 +156,15 @@ public class Article {
                 articles.add(new Article(
                         rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3),
-                        rs.getFloat(4),
+                        rs.getString(4),
+                        rs.getFloat(3),
                         fxSlika
                 ));
             }
             return articles;
         } catch (SQLException e) {
             System.out.println("Nisam uspio izvuci korisnike iz baze: " + e.getMessage());
-            return articles;
+            return null;
         }
     }
 }

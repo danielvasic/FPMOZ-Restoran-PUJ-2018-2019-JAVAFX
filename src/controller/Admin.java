@@ -135,10 +135,12 @@ public class Admin implements Initializable {
     public void odaberiProizvod(MouseEvent ev) {
         this.dodajProizBtn.setText("Uredi proizvod");
         this.selectedArticle = (Article) this.proizvodiTbl.getSelectionModel().getSelectedItem();
-        this.nazivTxt.setText(this.selectedArticle.getName());
-        this.opisTxt.setText(this.selectedArticle.getDescription());
-        this.cijenaTxt.setText(String.valueOf(this.selectedArticle.getPrice()));
-        this.slikaView.setImage(this.selectedArticle.getImage());
+        if(this.selectedArticle != null) {
+            this.nazivTxt.setText(this.selectedArticle.getName());
+            this.opisTxt.setText(this.selectedArticle.getDescription());
+            this.cijenaTxt.setText(String.valueOf(this.selectedArticle.getPrice()));
+            this.slikaView.setImage(this.selectedArticle.getImage());
+        }
     }
 
     @FXML
@@ -210,6 +212,8 @@ public class Admin implements Initializable {
         this.nazivTxt.setText("");
         this.opisTxt.setText("");
         this.cijenaTxt.setText("");
+        this.slikaView.setImage(null);
+        this.popuniProizvode();
     }
 
 
