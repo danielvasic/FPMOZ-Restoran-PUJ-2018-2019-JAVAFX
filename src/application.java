@@ -1,14 +1,22 @@
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.User;
 
-public class application {
-    public static void main (String [] args) {
-        User u = new User(
-                0, "Daniel", "Vasic", "dvasic", "csdigital", "admin"
-        );
+import java.util.List;
 
-        User.add(u);
-        User.update(u);
-        User.remove(u);
-        User.select();
+public class application extends Application {
+    public static void main (String [] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

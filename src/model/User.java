@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -130,7 +133,7 @@ public class User {
     }
 
     public static List<User> select() {
-        List<User> users = new ArrayList<>();
+        ObservableList<User> users = FXCollections.observableArrayList();
         try {
             Statement stmnt = Database.CONNECTION.createStatement();
             ResultSet rs = stmnt.executeQuery("SELECT * FROM korisnik");
