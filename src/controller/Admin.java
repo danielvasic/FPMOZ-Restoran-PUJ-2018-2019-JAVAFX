@@ -125,10 +125,12 @@ public class Admin implements Initializable {
     public void odaberiKorisnika(MouseEvent ev) {
         this.spasiBtn.setText("Uredi korisnika");
         this.selectedUser = (User) this.korisnikTablica.getSelectionModel().getSelectedItem();
-        this.kImeTxt.setText(this.selectedUser.getName());
-        this.kPrezimeTxt.setText(this.selectedUser.getSurname());
-        this.kKimeTxt.setText(this.selectedUser.getUsername());
-        this.kLozinkaTxt.setText(this.selectedUser.getPassword());
+        if (this.selectedUser != null) {
+            this.kImeTxt.setText(this.selectedUser.getName());
+            this.kPrezimeTxt.setText(this.selectedUser.getSurname());
+            this.kKimeTxt.setText(this.selectedUser.getUsername());
+            this.kLozinkaTxt.setText(this.selectedUser.getPassword());
+        }
     }
 
     @FXML
