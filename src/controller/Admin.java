@@ -148,11 +148,19 @@ public class Admin implements Initializable {
     @FXML
     public void skloniKorisnika (MouseEvent ev) {
         this.spasiBtn.setText("Dodaj korisnika");
+        this.dodajProizBtn.setText("Dodaj prozvod");
         this.selectedUser = null;
         this.kImeTxt.setText("");
         this.kPrezimeTxt.setText("");
         this.kKimeTxt.setText("");
         this.kLozinkaTxt.setText("");
+
+        this.nazivTxt.setText("");
+        this.opisTxt.setText("");
+        this.cijenaTxt.setText("");
+        this.slikaView.setImage(null);
+
+        this.popuniProizvode();
         this.popuniKorisnike();
     }
 
@@ -203,7 +211,7 @@ public class Admin implements Initializable {
                 this.selectedArticle.setImage(slika);
             }
             Article.update(this.selectedArticle);
-            this.selectedUser = null;
+            this.selectedArticle = null;
             this.dodajProizBtn.setText("Dodaj proizvod");
         } else {
             Article a = new Article(0, naziv, opis, cijena, slika);
