@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Database;
+import model.User;
+
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +25,7 @@ public class Login implements Initializable {
     @FXML
     TextField lozinkaTxt;
 
+    public static User logiraniKorisnik;
 
     @FXML
     public void loginUser(ActionEvent a) {
@@ -34,9 +37,16 @@ public class Login implements Initializable {
             stmnt.setString(2, password);
             ResultSet rs = stmnt.executeQuery();
 
+
+
             if (rs.next()) {
+                Login.logiraniKorisnik = User.get(rs.getInt(1));
                 Utils u = new Utils();
-                u.showNewWindow("admin");
+                if (logiraniKorisnik.getRole().equals("KONOBAR")) {
+                    u.showNewWindow("waiter", a);
+                } else {
+                    u.showNewWindow("admin", a);
+                }
             } else {
             }
         } catch (SQLException e) {

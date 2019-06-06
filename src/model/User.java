@@ -155,4 +155,29 @@ public class User {
             return users;
         }
     }
+
+
+    public static User get (int ID) {
+        try {
+            PreparedStatement stmnt = Database.CONNECTION.prepareStatement("SELECT * FROM korisnik WHERE id=?");
+            stmnt.setInt(1, ID);
+            ResultSet rs = stmnt.executeQuery();
+
+
+            if (rs.next()){
+                return new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6)
+                );
+            }
+            return null;
+        } catch (SQLException e) {
+            System.out.println("Nisam uspio izvuci korisnika iz baze: " + e.getMessage());
+            return null;
+        }
+    }
 }
